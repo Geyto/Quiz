@@ -134,6 +134,8 @@
                 })
             }
 
+            console.log(this.userResult)
+
             if (action === 'next' || action === 'pass') {
                 this.currentQuestionIndex++;
             } else {
@@ -194,7 +196,10 @@
                     location.href = 'index.html';
                 }
                 if (result) {
-                    location.href = 'result.html?score=' + result.score + '&total=' + result.total + '&id=' +id;
+                    let answerNumber = this.userResult.map(item =>{
+                        return item.chosenAnswerId
+                    })
+                    location.href = 'result.html?score=' + result.score + '&total=' + result.total + '&id=' +id +'&result='+ answerNumber;
                 }
             } else {
                 location.href = 'index.html';

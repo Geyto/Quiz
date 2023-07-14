@@ -13,7 +13,8 @@
             const id = url.searchParams.get('id');
             const score = url.searchParams.get('score');
             const total = url.searchParams.get('total');
-            location.href = 'list.html?score=' + score + '&total=' + total + '&id=' +id;
+            const answer = url.searchParams.get('result');
+            location.href = 'list.html?score=' + score + '&total=' + total + '&id=' +id + '&result=' + answer;
         }
     }
     Result.init();
