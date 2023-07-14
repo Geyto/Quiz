@@ -69,7 +69,8 @@
                 const optionElement = document.createElement('div');
                 optionElement.className = 'test__question-option';
 
-                const inputId = 'answer-' + answer.id;
+                const inputId = 'answer-' +
+                    answer.id;
 
                 const inputElement = document.createElement('input');
                 inputElement.className = 'option-answer';
