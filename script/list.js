@@ -6,11 +6,13 @@
        optionsElement: null,
        currentQuestionIndex: 0,
        answerUser: null,
+       backLinkElement: null,
        init(){
            const url = new URL(location.href);
            const testId = url.searchParams.get('id');
-           this.answerUser = url.searchParams.get('result');
-           console.log(this.answerUser)
+           this.answerUser = url.searchParams.get('result').split(',');
+           this.backLinkElement = document.getElementById('backLink');
+           this.backLinkElement.addEventListener('click', this.backLink);
            if (testId) {
                const xhrQuestions = new XMLHttpRequest();
                const xhrAnswer = new XMLHttpRequest();
@@ -24,7 +26,6 @@
                    } catch (e) {
                        location.href = 'index.html';
                    }
-                   console.log(this.quizAnswer)
                } else {
                    location.href = 'index.html';
                }
@@ -34,8 +35,8 @@
                    } catch (e) {
                        location.href = 'index.html';
                    }
-                   console.log(this.quiz);
                    this.showQuestion();
+                   this.showAnswer();
                } else {
                    location.href = 'index.html';
                }
@@ -49,13 +50,12 @@
            this.optionsElement = document.getElementById('listQuestions');
            const questions = this.quiz.questions;
            this.optionsElement.innerHTML = '';
-           for (let i = 0; i <= questions.length; i++){
-               const q = questions[i].question;
+           for (let i = 0; i < questions.length; i++){
                const optionElement = document.createElement('div');
                optionElement.className = 'list__question';
                const nameQuestionElement = document.createElement('div');
                nameQuestionElement.className = 'name__question'
-               nameQuestionElement.innerHTML = '<span class="name__question-span">Вопрос ' + (+i+1) + ':</span> ' + q;
+               nameQuestionElement.innerHTML = '<span class="name__question-span">Вопрос ' + (+i+1) + ':</span> ' + questions[i].question;
                const answerQuestionElements = document.createElement('div');
                answerQuestionElements.className = 'answer__questions';
                for(let x = 0; x < questions[i].answers.length; x++){
@@ -79,13 +79,25 @@
        },
        showAnswer(){
            for(let i = 0; i <= this.quizAnswer.length; i++){
-               if (this.quizAnswer[i] === this.answerUser[i]){
-                   document.getElementById(this.answerUser[i]).classList.add('answer-right');
+               if (this.quizAnswer[i] === +this.answerUser[i]){
+                   const activeElement = document.getElementById(this.answerUser[i]);
+                   activeElement.firstChild.classList.add('circle-right');
+                   activeElement.lastChild.classList.add('answer-right');
                }else {
-                   document.getElementById(this.answerUser[i]).classList.add('answer-error');
+                   const activeElement = document.getElementById(this.answerUser[i]);
+                   activeElement.lastChild.classList.add('answer-error');
+                   activeElement.firstChild.classList.add('circle-error');
                }
            }
        },
+       backLink(){
+           const url = new URL(location.href);
+           const id = url.searchParams.get('id');
+           const score = url.searchParams.get('score');
+           const total = url.searchParams.get('total');
+           const answer = url.searchParams.get('result');
+           location.href = 'result.html?score=' + score + '&total=' + total + '&id=' +id + '&result=' + answer;
+       }
    }
    List.init();
 })()
