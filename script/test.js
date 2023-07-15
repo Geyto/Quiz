@@ -97,8 +97,15 @@
             })
             if (chosenOption && chosenOption.chosenAnswerId) {
                 this.nextBtnElement.removeAttribute('disabled');
+                this.passBtnElement.lastChild.removeAttribute('src');
+                this.passBtnElement.lastChild.setAttribute('src', 'img/ArrowPassGrey.png');
+                this.passBtnElement.classList.add('disabled')
+
             } else {
                 this.nextBtnElement.setAttribute('disabled', 'disabled');
+                this.passBtnElement.lastChild.removeAttribute('src');
+                this.passBtnElement.lastChild.setAttribute('src', 'img/ArrowPass.png');
+                this.passBtnElement.classList.remove('disabled')
             }
             if (this.currentQuestionIndex === this.quiz.questions.length) {
                 this.nextBtnElement.innerText = 'Завершить';
@@ -113,6 +120,9 @@
         },
         chooseAnswer() {
             this.nextBtnElement.removeAttribute('disabled');
+            this.passBtnElement.lastChild.removeAttribute('src');
+            this.passBtnElement.lastChild.setAttribute('src', 'img/ArrowPassGrey.png');
+            this.passBtnElement.classList.add('disabled')
         },
         move(action) {
             const activeQuestion = this.quiz.questions[this.currentQuestionIndex - 1];

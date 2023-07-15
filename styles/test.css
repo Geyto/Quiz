@@ -142,6 +142,10 @@ input[type='radio']:checked::before {
 .pass__question-link:hover {
     text-decoration: underline;
 }
+.disabled{
+    pointer-events: none;
+    color:#DCDCF3;
+}
 .test__progress-bar__item{
     display: flex;
     flex-direction: column;
