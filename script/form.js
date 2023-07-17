@@ -1,6 +1,8 @@
 (function () {
     const Form = {
-        agreeElement: null, processElement: null, fields: [{
+        agreeElement: null,
+        processElement: null,
+        fields: [{
             name: 'name', id: 'name', element: null, regex: /^[А-Я][а-я]+\s*$/, valid: false,
         }, {
             name: 'lastName', id: 'last-name', element: null, regex: /^[А-Я][а-я]+\s*$/, valid: false,
@@ -48,11 +50,10 @@
             return isvalid
         }, processForm() {
             if (this.validateForm()) {
-                let paramString = '';
-                this.fields.forEach(item => {
-                    paramString += (!paramString ? '?' : '&') + item.name + '=' + item.element.value;
-                })
-                location.href = 'choice.html' + paramString
+                localStorage.setItem('nameUser', this.fields[0].element.value);
+                localStorage.setItem('lastNameUser', this.fields[1].element.value);
+                localStorage.setItem('mail', this.fields[2].element.value)
+                location.href = 'choice.html';
             }
         }
 

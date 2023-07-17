@@ -51,9 +51,10 @@
             }
         },
         chooseQuiz(element){
-            const daraId = element.getAttribute('data-id');
-            if (daraId){
-                location.href = "test.html" + location.search + '&id=' + daraId;
+            const dataId = element.getAttribute('data-id');
+            localStorage.setItem('id', dataId)
+            if (dataId){
+                location.href = "test.html"
             }
         }
     }

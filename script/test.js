@@ -11,8 +11,7 @@
         userResult: [],
         init() {
             checkUserData();
-            const url = new URL(location.href);
-            const testId = url.searchParams.get('id');
+            const testId = localStorage.getItem('id')
             if (testId) {
                 const xhr = new XMLHttpRequest();
                 xhr.open('GET', 'https://testologia.site/get-quiz?id=' + testId, false);
@@ -184,11 +183,10 @@
             }
         },
         complete() {
-            const url = new URL(location.href);
-            const id = url.searchParams.get('id');
-            const name = url.searchParams.get('name');
-            const lastName = url.searchParams.get('lastName');
-            const email = url.searchParams.get('email');
+            const id = localStorage.getItem('id');
+            const name = localStorage.getItem('nameUser');
+            const lastName = localStorage.getItem('lastNameUser');
+            const email = localStorage.getItem('mail');
             const xhr = new XMLHttpRequest();
             xhr.open('POST', 'https://testologia.site/pass-quiz?id=' + id, false);
             xhr.setRequestHeader('Content-Type', 'application/json;charset=UTF-8');
@@ -209,7 +207,10 @@
                     let answerNumber = this.userResult.map(item =>{
                         return item.chosenAnswerId
                     })
-                    location.href = 'result.html?score=' + result.score + '&total=' + result.total + '&id=' +id +'&result='+ answerNumber;
+                    localStorage.setItem('score', result.score)
+                    localStorage.setItem('total', result.total)
+                    localStorage.setItem('answer', answerNumber)
+                    location.href = 'result.html'
                 }
             } else {
                 location.href = 'index.html';

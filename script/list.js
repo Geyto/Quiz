@@ -8,9 +8,8 @@
        answerUser: null,
        backLinkElement: null,
        init(){
-           const url = new URL(location.href);
-           const testId = url.searchParams.get('id');
-           this.answerUser = url.searchParams.get('result').split(',');
+           const testId = localStorage.getItem('id')
+           this.answerUser = localStorage.getItem('answer').split(',');
            this.backLinkElement = document.getElementById('backLink');
            this.backLinkElement.addEventListener('click', this.backLink);
            if (testId) {
@@ -86,17 +85,14 @@
                }else {
                    const activeElement = document.getElementById(this.answerUser[i]);
                    activeElement.lastChild.classList.add('answer-error');
+                   console.log(activeElement);
                    activeElement.firstChild.classList.add('circle-error');
                }
            }
        },
        backLink(){
-           const url = new URL(location.href);
-           const id = url.searchParams.get('id');
-           const score = url.searchParams.get('score');
-           const total = url.searchParams.get('total');
-           const answer = url.searchParams.get('result');
-           location.href = 'result.html?score=' + score + '&total=' + total + '&id=' +id + '&result=' + answer;
+
+           location.href = 'result.html';
        }
    }
    List.init();

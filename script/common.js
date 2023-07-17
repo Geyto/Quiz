@@ -1,8 +1,7 @@
 function checkUserData(){
-    const url = new URL(location.href);
-    const name = url.searchParams.get('name');
-    const lastName = url.searchParams.get('lastName');
-    const email = url.searchParams.get('email');
+    const name = localStorage.getItem('nameUser')
+    const lastName = localStorage.getItem('lastNameUser')
+    const email = localStorage.getItem('mail')
 
     if (!name || !lastName || !email){
         location.href = 'index.html';
