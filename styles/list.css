@@ -23,8 +23,7 @@
     color: #333;
     font-family: "Museo Sans Cyrl Bold" ,sans-serif;
     font-size: 54px;
-    margin: 0;
-    padding-bottom: 60px;
+    margin-bottom: 10px;
 }
 .list__title-span{
     color: #6933DC;
@@ -76,4 +75,18 @@
 }
 .result__link{
     bottom: -60px;
+}
+.list__text{
+    color: #333;
+    display: flex;
+    font-size: 20px;
+    margin-bottom: 60px;
+}
+.text{
+    color: #333;
+    font-size: 20px;
+}
+.student{
+    color: #6933DC;
+    margin-left: 5px;
 }

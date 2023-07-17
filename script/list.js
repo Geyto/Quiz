@@ -45,6 +45,7 @@
        },
 
        showQuestion(){
+           document.getElementById('data').innerText = ' ' + localStorage.getItem('nameUser') + ' ' + localStorage.getItem('lastNameUser') + ',' + localStorage.getItem('mail');
            document.getElementById('nameTest').innerText = this.quiz.name;
            this.optionsElement = document.getElementById('listQuestions');
            const questions = this.quiz.questions;
