@@ -8,10 +8,11 @@ export class List {
         this.optionsElement = null;
         this.backLinkElement = null;
         this.backLinkElement = document.getElementById('backLink');
-        this.backLinkElement.addEventListener('click', this.backLink);
         this.routeParams = UrlManager.getQueryParams();
         this.userInfo = Auth.getUserInfo();
         this.init();
+        this.backLinkElement.addEventListener('click', this.backLink.bind(this));
+
     }
     async init(){
         if (!this.userInfo){
